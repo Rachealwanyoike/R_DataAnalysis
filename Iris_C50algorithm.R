@@ -1,4 +1,4 @@
-#The C5.0 algorithm
+#The C5.0 algorithm on Iris data.
 #First install these packages
 install.packages("C50")
 install.packages("dplyr")
@@ -64,7 +64,7 @@ CrossTable(testData$Species,predict(dtModel, testData))
 CrossTable(testData$Species == predict(dtModel, testData))
 
 #How did the model do? 
-#TASK: What percent of cases were correctly classified?
+#What percent of cases were correctly classified?
 
 
 
