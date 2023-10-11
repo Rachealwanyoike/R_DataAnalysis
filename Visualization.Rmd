@@ -1,0 +1,63 @@
+---
+title: "Nutrition_data visualization"
+author: "Racheal_wanyoike"
+date: '2022-06-26'
+output:
+  html_document:
+    theme:
+      bootstrap: journal
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Obtained data
+
+```{r,echo=TRUE}
+nutrition_data <- read.csv ("https://raw.githubusercontent.com/fivethirtyeight/data/master/nutrition-studies/raw_anonymized_data.csv")
+
+```
+
+Next, I cleaned the data by selecting 12 variables that may have an association to cancer. 
+
+```{r nutrition_data, include=TRUE}
+library(dplyr)
+cancerlinktofoods <- select(nutrition_data,cancer,BEEFPORKDISHFREQ,DRIEDFRUITFREQ,OTHERFRESHFRUITFREQ,CORNFREQ,SUGARINCOFFEE,SALTFREQ,HOTTEAFREQ,RAWTOMATOESFREQ,MILKFREQ,BUTTERFREQ,OTHERBREADSFREQ, BROCCOLIFREQ)
+cancerlinktofoods
+```
+
+To understand the numeric variables and  in my cancerlinktofoods dataset, I plotted a summary box plot.
+
+```{r,echo=TRUE}
+cancerlinktofoods$cancer = factor(cancerlinktofoods$cancer)
+summary(cancerlinktofoods)
+boxplot(cancerlinktofoods$BEEFPORKDISHFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$DRIEDFRUITFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$OTHERFRESHFRUITFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$CORNFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$SUGARINCOFFEE~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$HOTTEAFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$RAWTOMATOESFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$BUTTERFREQ~cancerlinktofoods$cancer)
+boxplot(cancerlinktofoods$BROCCOLIFREQ~cancerlinktofoods$cancer)
+
+```
+
+The boxplot chart helps visualize the summary statistics grouped by the factor(cancer).We can also see outliers.
+
+
+The percentage of respondents with cancer and those without:
+```{r,echo=TRUE}
+cancertb <- table(cancerlinktofoods$cancer)
+cancerprop <- prop.table(cancertb)
+cancerdf <- as.data.frame(cancerprop)
+names(cancerdf) <- c("cancer", "Frequency")
+
+library(ggplot2)
+ggplot(data=cancerdf, mapping=aes(x=cancer, y=Frequency)) + 
+  geom_col(fill="darkgreen", alpha=0.5) +
+  scale_y_continuous(labels = scales::percent)
+```
+
