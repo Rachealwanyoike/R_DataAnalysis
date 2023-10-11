@@ -12,6 +12,3 @@ foo_foo_3 <- bop(foo_foo_2, on = head)
 gapminder%>%
   select(Country, lifeexp, gdppercapita)%>%
   filter(country=="kenya")
-
-
-baby<-
