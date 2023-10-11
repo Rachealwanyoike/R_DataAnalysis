@@ -54,10 +54,6 @@ ggplot(grain,
       geom_bar(position = "stack") +
   scale_x_discrete(guide = guide_axis(n.dodge = 10))
 
-
-
-
-
 #Histogram for Hectares
 qplot(grain$Hectares,
       geom="histogram",
