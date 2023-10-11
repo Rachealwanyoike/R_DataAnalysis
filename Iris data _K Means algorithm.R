@@ -48,7 +48,7 @@ plot(iris.new[c(3,4)], col=iris.class)
 table(result$cluster,iris.class)
 
 #Results of the table show that Cluster 1 corresponds to Virginica, 
-#Cluster 2 corresponds to Versicolor 
+Cluster 2 corresponds to Versicolor 
 #and Cluster 3 to Setosa.
 
 #Total number of correctly classified instances are: 36 + 47 + 50= 133
