@@ -13,6 +13,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```
+#The nutrition dataset contains information on the eating,general habits and health of 54 respondents who completed a nutrition survey similar to a food frequency questionnaire.The data is in a csv file, flat file database ,structured (rows and column), delimited format.Delimiters used: commas and quotes. Here, I have created two exploratory data visualizations for subset data of nurtrition data; cancerlinktofoods data. First to display the summary statistics of the numeric variables and find outliers present in the data Second, a bar chart that shows the percentage of respondents with cancer.
+```
 Obtained data
 
 ```{r,echo=TRUE}
