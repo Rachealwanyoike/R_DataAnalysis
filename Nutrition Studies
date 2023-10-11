@@ -1,0 +1,49 @@
+---
+title: "Nutrition studies"
+author: "Racheal_wanyoike"
+date: '2022-06-20'
+output: 
+  html_document:
+     theme:
+       bootstrap: cerule
+---
+
+## Nutrition study R Markdown
+This dataset contains information on the eating,general habits and health of 54 respondents who completed a nutrition survey similar to a food frequency questionnaire.This data will be used to find associations between food and different outcomes using P-values.The data  is in a csv file, flat file database ,structured (rows and column), delimited format.Delimiters used commas and quotes.
+
+## To read the data, I used the read_csv() in the readr package.
+
+```{r nutrituion studies,echo=TRUE}
+
+nutrition_data <- read.csv ("https://raw.githubusercontent.com/fivethirtyeight/data/master/nutrition-studies/raw_anonymized_data.csv")
+
+```
+
+## Next, I cleaned the data by selecting 12 variables that may have an association to cancer. 
+
+```{r nutrition_data, include=TRUE}
+library(dplyr)
+cancerlinktofoods <- select(nutrition_data,cancer,BEEFPORKDISHFREQ,DRIEDFRUITFREQ,OTHERFRESHFRUITFREQ,CORNFREQ,SUGARINCOFFEE,SALTFREQ,HOTTEAFREQ,RAWTOMATOESFREQ,MILKFREQ,BUTTERFREQ,OTHERBREADSFREQ, BROCCOLIFREQ)
+
+```
+
+The dataframe cancerlinktofoods has `r nrow(cancerlinktofoods)` rows and `r ncol(cancerlinktofoods)`  columns. The names of the columns and a brief description of each are in the table below:
+```{r}
+description_table <- data.frame(
+  Names = c("cancer","BEEFPORKDISHFREQ","DRIEDFRUITFREQ","OTHERFRESHFRUITFREQ","CORNFREQ","SUGARINCOFFEE","SALTFREQ","HOTTEAFREQ","RAWTOMATOESFREQ","MILKFREQ","BUTTERFREQ","OTHERBREADSFREQ","BROCCOLIFREQ"),
+Descriptions = c("Respondents have/ever have cancer?Yes/No","Frequency of eating beefporkdishes","frequency of eating dried fruits","frequency of eating other fresh fruits","frequency of eating corn","frequency of putting sugar in coffee","frequency of salt added","frequency of drinking hot tea","frequncy of eating raw tomatoes","frequency of drinking milk","frequncy of using/adding butter to food","frequency of eating bread other than cornbread","frequency of eating broccoli") 
+)
+description_table
+```
+
+# Next, I picked three columns to obtain summary:
+```{r,echo=TRUE}
+library(dplyr)
+sub_cancerlinktofoods <- select(cancerlinktofoods,BEEFPORKDISHFREQ,RAWTOMATOESFREQ,BROCCOLIFREQ)
+
+```
+
+#Then, saved summary of the three columns in object summary table
+```{r, include=TRUE}
+summarytable <- summary(sub_cancerlinktofoods)
+```
